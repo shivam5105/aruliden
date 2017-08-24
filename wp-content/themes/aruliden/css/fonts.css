@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Theinhardt-Light';
+  src: url("../fonts/Theinhardt-Light.eot");
+  src: local("☺"), url("../fonts/Theinhardt-Light.woff") format("woff"), url("../fonts/Theinhardt-Light.ttf") format("truetype"), url("../fonts/Theinhardt-Light.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+  @font-face {
+  font-family: 'Theinhardt-Light';
+  src: url("../fonts/Theinhardt-LightIta.eot");
+  src: local("☺"), url("../fonts/Theinhardt-LightIta.woff") format("woff"), url("../fonts/Theinhardt-LightIta.ttf") format("truetype"), url("../fonts/Theinhardt-LightIta.svg") format("svg");
+  font-weight: normal;
+  font-style: italic; }
+@font-face {
+  font-family: 'Theinhardt-Medium';
+  src: url("../fonts/Theinhardt-Medium.eot");
+  src: local("☺"), url("../fonts/Theinhardt-Medium.woff") format("woff"), url("../fonts/Theinhardt-Medium.ttf") format("truetype"), url("../fonts/Theinhardt-Medium.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+  @font-face {
+  font-family: 'Theinhardt-MediumIta';
+  src: url("../fonts/Theinhardt-MediumIta.eot");
+  src: local("☺"), url("../fonts/Theinhardt-MediumIta.woff") format("woff"), url("../fonts/Theinhardt-MediumIta.ttf") format("truetype"), url("../fonts/Theinhardt-MediumIta.svg") format("svg");
+  font-weight: normal;
+  font-style: italic; }
+  @font-face {
+  font-family: 'Theinhardt-Regular';
+  src: url("../fonts/Theinhardt-Regular.eot");
+  src: local("☺"), url("../fonts/Theinhardt-Regular.woff") format("woff"), url("../fonts/Theinhardt-Regular.ttf") format("truetype"), url("../fonts/Theinhardt-Regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Theinhardt-RegularIta';
+  src: url("../fonts/Theinhardt-RegularIta.eot");
+  src: local("☺"), url("../fonts/Theinhardt-RegularIta.woff") format("woff"), url("../fonts/Theinhardt-RegularIta.ttf") format("truetype"), url("../fonts/Theinhardt-RegularIta.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
