@@ -1,68 +1,71 @@
 <?php get_header(); ?>
-			
-			<div id="content" class="clearfix row">
-			
-				<div id="main" class="col-sm-8 clearfix" role="main">
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
-					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-						
-						<header>
-						
-							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
-							
-							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
-							
-							<p class="meta"><?php _e("Posted", "wpbootstrap"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php echo get_the_date('F jS, Y', '','', FALSE); ?></time> <?php _e("by", "wpbootstrap"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "wpbootstrap"); ?> <?php the_category(', '); ?>.</p>
-						
-						</header> <!-- end article header -->
-					
-						<section class="post_content clearfix" itemprop="articleBody">
-							<?php the_content(); ?>
-							
-							<?php wp_link_pages(); ?>
-					
-						</section> <!-- end article section -->
-						
-						<footer>
+<?php if (have_posts()) : the_post(); ?>
 			
-							<?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags","wpbootstrap") . ':</span> ', ' ', '</p>'); ?>
-							
-							<?php 
-							// only show edit button if user has permission to edit posts
-							if( $user_level > 0 ) { 
-							?>
-							<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-success edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","wpbootstrap"); ?></a>
-							<?php } ?>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
-					
-					<?php comments_template('',true); ?>
-					
-					<?php endwhile; ?>			
-					
-					<?php else : ?>
-					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
-			
-				</div> <!-- end #main -->
-    
-				<?php get_sidebar(); // sidebar 1 ?>
-    
-			</div> <!-- end #content -->
+<div class="container-full post-single">
+	<div class="row">
+		<div class="col-sm-5">
+			<h1><?php echo get_the_title(); ?></h1>
+
+			<div class="post-date"><h3>Date - <?php echo get_the_date( 'm.d.y' ); ?></h3></div>
+
+			<div class="post-summary">
+				<?php echo the_content(); ?>
+			</div>
+		</div>
+		<div class="col-sm-7">
+			<div class="post-slider-container">
+		 		<ul class="post-slider">
+                    
+		 		<?php $images = get_field("gallery_images"); 
+		 			foreach ($images as $image) {
+		 				?>
+
+		 					<li><img src="<?php echo $image['gallery_image']['url'] ?>"></li>
+		 				<?php
+		 			}
+
+		 		?>
+
+
+                </ul>
+                <div class="outside">
+  					<p><span id="slider-prev"></span> <span id="slider-next"></span> <span class="slide-number"></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-full home-news-listing mt95">
+		<h1><span class="underline">News</span></h1>
+		<div class="row">
+
+			<div class="col-sm-4 block">
+				<div class="news-grid">
+					Dart x Design,<br/>by various designers
+					<div class="read"><a href="#">Read in Designweek.co.uk</a></div>
+				</div>
+			</div>
+			<div class="col-sm-4 block">
+				<div class="news-grid">
+					FastCompant: Google Rethinks Remote Collaboration with Jamboard
+					<div class="read"><a href="#">Read in Designweek.co.uk</a></div>
+				</div>
+				
+			</div>
+			<div class="col-sm-4 block">
+				<div class="news-grid">
+					Dart x Design,<br/>by various designers
+					<div class="read"><a href="#">Read in Designweek.co.uk</a></div>
+				</div>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+<?php endif; ?>
 
 <?php get_footer(); ?>

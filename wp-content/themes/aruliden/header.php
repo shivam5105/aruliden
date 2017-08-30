@@ -16,9 +16,9 @@
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+		
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/fonts.css"/>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/theme.css"/>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
 		<!-- end of wordpress head -->
 		<!-- IE8 fallback moved below head to work properly. Added respond as well. Tested to work. -->
 			<!-- media-queries.js (fallback) -->
@@ -69,6 +69,7 @@
 			</div> <!-- end .navbar -->
 		
 		</header> <!-- end header -->
+		<?php if(!is_single()) {  ?>
 		<div class="container-fluid page-banner no-pd">
 
 			<img src="<?php echo get_template_directory_uri(); ?>/images/bg-1.jpg" alt="#" />
@@ -78,5 +79,6 @@
 				</div>
 
 		</div>
+		<?php } ?>
 		
 		<div class="page-container">

@@ -87,7 +87,7 @@ Template Name: Homepage
 				<h2>Our Services</h2>
 				<div class="info-accordion">
 					<div class="acc active">
-						<h4 class="head">Strategy + Innovation</h4>
+						<h4 class="head">Strategy + Innovation <span class="ion-android-close"></span></h4>
 						<div class="info">
 							<p>We rething everything from products to entire categories, bulding new bridges between brands and</p>
 							<ul>
@@ -101,7 +101,7 @@ Template Name: Homepage
 						</div>
 					</div>
 					<div class="acc">
-						<h4 class="head">Strategy + Innovation</h4>
+						<h4 class="head">Strategy + Innovation <span class="ion-plus"></span></h4>
 						<div class="info">
 							<p>We rething everything from products to entire categories, bulding new bridges between brands and</p>
 							<ul>
@@ -115,7 +115,7 @@ Template Name: Homepage
 						</div>
 					</div>
 					<div class="acc">
-						<h4 class="head">Strategy + Innovation</h4>
+						<h4 class="head">Strategy + Innovation <span class="ion-plus"></span></h4>
 						<div class="info">
 							<p>We rething everything from products to entire categories, bulding new bridges between brands and</p>
 							<ul>

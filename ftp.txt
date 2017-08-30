@@ -1,0 +1,10 @@
+ftp access for aruliden
+
+host: ftp.thelabelmakers.org
+port: 21
+username: aruliden@thelabelmakers.org
+password: :6yRWMOPN/yC
+
+
+path
+/home/thelabel/public_html/aruliden

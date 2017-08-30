@@ -123,7 +123,7 @@ require_once('library/shortcodes.php');
 // Custom Backend Footer
 add_filter('admin_footer_text', 'wp_bootstrap_custom_admin_footer');
 function wp_bootstrap_custom_admin_footer() {
-	echo '<span id="footer-thankyou">Developed by <a href="http://320press.com" target="_blank">320press</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.';
+	echo '<span id="footer-thankyou">Developed by <a href="http://320press.com" target="_blank">320press</a></span>. aruliden using <a href="http://themble.com/bones" target="_blank">Bones</a>.';
 }
 
 // adding it to the admin area
@@ -138,6 +138,9 @@ if ( ! isset( $content_width ) ) $content_width = 580;
 add_image_size( 'wpbs-featured', 780, 300, true );
 add_image_size( 'wpbs-featured-home', 970, 311, true);
 add_image_size( 'wpbs-featured-carousel', 970, 400, true);
+
+add_image_size( '1000x728', 1000, 728, true );
+add_image_size( '815x420', 815, 420, true );
 
 /* 
 to add more sizes, simply copy a line from above 
@@ -466,7 +469,7 @@ function wp_bootstrap_first_paragraph( $content ){
     if( is_page_template( 'page-homepage.php' ) )
         return $content;
     else
-        return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
+        return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead-temp">', $content, 1);
 }
 add_filter( 'the_content', 'wp_bootstrap_first_paragraph' );
 
@@ -554,9 +557,15 @@ if( !function_exists("wp_bootstrap_theme_styles") ) {
         wp_register_style( 'wpbs', get_template_directory_uri() . '/library/dist/css/styles.f6413c85.min.css', array(), '1.0', 'all' );
         wp_enqueue_style( 'wpbs' );
 
+        wp_register_style( 'wpbs-table', get_stylesheet_directory_uri() . '/css/dataTables.bootstrap.min.css', array(), '1.0', 'all' );
+        wp_enqueue_style( 'wpbs-table' );
+
         // For child themes
         wp_register_style( 'wpbs-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.0', 'all' );
         wp_enqueue_style( 'wpbs-style' );
+
+        wp_register_style( 'bxslider', get_stylesheet_directory_uri() . '/css/jquery.bxslider.min.css', array(), '1.0', 'all' );
+        wp_enqueue_style( 'bxslider' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'wp_bootstrap_theme_styles' );
@@ -574,21 +583,51 @@ if( !function_exists( "wp_bootstrap_theme_js" ) ) {
     wp_register_script( 'bootstrap', 
       get_template_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.js', 
       array('jquery'), 
-      '1.2' );
+      '1.2', true );
 
     wp_register_script( 'wpbs-js', 
       get_template_directory_uri() . '/library/dist/js/scripts.d1e3d952.min.js',
       array('bootstrap'), 
-      '1.2' );
+      '1.2', true  );
   
     wp_register_script( 'modernizr', 
       get_template_directory_uri() . '/bower_components/modernizer/modernizr.js', 
       array('jquery'), 
-      '1.2' );
-  
+      '1.2', true );
+
+        wp_register_script( 'bxslider', 
+      get_template_directory_uri() . '/js/jquery.bxslider.min.js', 
+      array('jquery'), 
+      '1.2', true );
+
+    wp_register_script( 'scripts', 
+      get_template_directory_uri() . '/js/scripts.js', 
+      array('jquery'), 
+      '1.2', true );
+
+    wp_register_script( 'isotope', 
+      get_template_directory_uri() . '/js/isotope.pkgd.min.js', 
+      array('jquery'), 
+      '1.2', true );
+
+    wp_register_script( 'jqueryDataTable', 
+      get_template_directory_uri() . '/js/jquery.dataTables.min.js', 
+      array('jquery'), 
+      '1.2', true );
+
+    wp_register_script( 'jqueryBSTable', 
+      get_template_directory_uri() . '/js/dataTables.bootstrap.min.js', 
+      array('jquery'), 
+      '1.2', true );
+
     wp_enqueue_script( 'bootstrap' );
     wp_enqueue_script( 'wpbs-js' );
     wp_enqueue_script( 'modernizr' );
+    wp_enqueue_script( 'bxslider' );
+    wp_enqueue_script( 'isotope' );
+    wp_enqueue_script( 'jqueryDataTable' );
+    wp_enqueue_script( 'jqueryBSTable' );
+    wp_enqueue_script( 'scripts' );
     
   }
 }
@@ -645,7 +684,7 @@ function wp_bootstrap_related_posts() {
   echo '</ul>';
 }
 
-// Numeric Page Navi (built into the theme by default)
+// Numeric Page Navi (aruliden into the theme by default)
 function wp_bootstrap_page_navi($before = '', $after = '') {
   global $wpdb, $wp_query;
   $request = $wp_query->request;
@@ -718,5 +757,105 @@ function cc_mime_types($mimes) {
   return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
-//Ankit
+
+
+
+
+
+
+
+/** custom post for news **/
+
+function aruliden_news() {
+
+  $labels = array(
+    'name'                  => _x( 'News', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'News', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'News', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent News:', 'aruliden' ),
+    'all_items'             => __( 'All News', 'aruliden' ),
+    'add_new_item'          => __( 'Add News', 'aruliden' ),
+    'add_new'               => __( 'Add News', 'aruliden' ),
+    'new_item'              => __( 'New News', 'aruliden' ),
+    'edit_item'             => __( 'Edit News', 'aruliden' ),
+    'update_item'           => __( 'Update News', 'aruliden' ),
+    'view_item'             => __( 'View News', 'aruliden' ),
+    'view_items'            => __( 'View News', 'aruliden' ),
+    'search_items'          => __( 'Search News', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past News list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past News list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'News', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_news'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 5,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_news', $args );
+}
+add_action( 'init', 'aruliden_news', 0 );
+
+
+/** custom taxonomy for paul Recipes Recipe **/
+function custom_taxonomy_news_cat()  {
+
+$labels = array(
+    'name'                       => 'News Categories',
+    'singular_name'              => 'News',
+    'menu_name'                  => 'News Categories',
+    'all_items'                  => 'All News',
+    'parent_item'                => 'Parent News',
+    'parent_item_colon'          => 'Parent News:',
+    'new_item_name'              => 'New News',
+    'add_new_item'               => 'Add New News',
+    'edit_item'                  => 'Edit News',
+    'update_item'                => 'Update News',
+    'separate_items_with_commas' => 'Separate News with commas',
+    'search_items'               => 'Search News',
+    'add_or_remove_items'        => 'Add or remove News',
+    'choose_from_most_used'      => 'Choose from the most used News Categories',
+);
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+register_taxonomy( 'news_cat', 'aruliden_news', $args );
+
+}
+
+add_action( 'init', 'custom_taxonomy_news_cat', 0 );
+
+
+
 ?>
