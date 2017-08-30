@@ -718,5 +718,5 @@ function cc_mime_types($mimes) {
   return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
-
+//Ankit
 ?>
