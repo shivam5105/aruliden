@@ -15,7 +15,7 @@
 
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
-		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ionicons.min.css"/>
 		
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/fonts.css"/>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/theme.css"/>
@@ -70,9 +70,9 @@
 		
 		</header> <!-- end header -->
 		<?php if(!is_single()) {  ?>
-		<div class="container-fluid page-banner no-pd">
+		<div class="container-fluid page-banner no-pd parallax-window">
 
-			<img src="<?php echo get_template_directory_uri(); ?>/images/bg-1.jpg" alt="#" />
+			
 				<div class="banner-text">
 					Good Design is function
 					and beauty, together.

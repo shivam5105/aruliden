@@ -17,19 +17,50 @@ Template Name: Awards
 	<div class="container-full">
 		<div class="row">
 			<ol class="breadcrumb pd-0">
+				
 				<li>All</li>
-				<li>Posts</li>
-				<li>Press</li>
-				<li>Exhibition</li>
-				<li>Awards</li>
+<?php
+
+  $taxonomy     = 'awards_cat';
+  $orderby      = 'id';  
+  $show_count   = 0;      // 1 for yes, 0 for no
+  $pad_counts   = 0;      // 1 for yes, 0 for no
+  $hierarchical = 1;      // 1 for yes, 0 for no  
+  $title        = '';  
+  $empty        = 0;
+
+  $args = array(
+         'taxonomy'     => $taxonomy,
+         'orderby'      => $orderby,
+         'show_count'   => $show_count,
+         'pad_counts'   => $pad_counts,
+         'hierarchical' => $hierarchical,
+         'title_li'     => $title,
+         'parent'		=> 0,
+         'hide_empty'   => $empty
+  );
+ $all_categories = get_categories( $args );
+ foreach ($all_categories as $cat) {
+ 	?>
+ 	<li><a href="<?php echo get_term_link($cat->slug, "awards_cat"); ?>"><?php echo $cat->name; ?></a></li>
+<?php
+}
+?>
+
 			</ol>
 		</div>
 		<div class="row">
 			<div class="col-sm-12 page-description">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed diam nonummy nibh euismod tincidunt.</p>
+				<?php 
+					the_post();
+				the_content(); 
+
+				?>
 			</div>
 		</div>
 	</div>
+<?php wp_reset_postdata(); ?>
+
 	<div class="table-container container-full">
 		<div class="row">
 			<table id="awards-table" class="table dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
@@ -41,156 +72,55 @@ Template Name: Awards
 						</tr>
 					</thead>
 					<tbody>
+
+<?php 
+	$args = array( 
+	'post_type' => 'aruliden_awards',
+	'orderby' => 'date',
+	'order' => 'DESC'
+	);
+	$the_query = new WP_Query( $args );
+?>
+<?php if ( $the_query->have_posts() ) : 
+	  while ( $the_query->have_posts() ) : $the_query->the_post();
+?>	
+
 						<tr role="row">
-							<td class="">1Red Dot Design Award</td>
-							<td class="">Project 1</td>
-							<td class="">2017 <span class="expand-info ion-plus"></span></td>
+							<td class=""><?php echo get_the_title(); ?></td>
+							<td class=""><?php echo get_field("project_name"); ?></td>
+							<td class=""><?php echo get_field("year"); ?> <span class="expand-info ion-plus"></span></td>
 						</tr>
 						<tr class="info-row">
 							<td colspan="3">
 								<div class="info">
 								<ul class="col-sm-3">
 									<li class="head">Info</li>
-									<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-											consequat.
-									</li>
+									<li><?php echo get_field("info"); ?></li>
 								</ul>
 								<ul class="col-sm-3">
 									<li class="head">Credits</li>
-									<li><span>Client:</span> Google</li>
-									<li><span>Manufacturer:</span> Eliza Thornberry</li>
-									<li><span>Strategy:</span> John Doe</li>
+									<?php
+										$credits = get_field("credits");
+										foreach ($credits as $credit) {
+									?>
+										<li><span><?php echo $credit['title'] ?></span> <?php echo $credit['name'] ?></li>
+									<?php
+										}
+									?>
 								</ul>
 								<ul class="col-sm-6">
-									<li><img src="<?php echo get_template_directory_uri(); ?>/images/table-img.jpg" alt=""/></li>
+									<li><img src="<?php echo the_post_thumbnail_url("840x495"); ?>" alt="<?php echo get_field("project_name"); ?>"/></li>
 								</ul>
 
-								
 								</div>
 							</td>
 						</tr>
-						<tr role="row">
-							<td class="">2Red Dot Design Award, 2Red Dot Design Award, 2Red Dot Design Award, 2Red Dot Design Award</td>
-							<td class="">Project 2</td>
-							<td class="">2016 <span class="expand-info ion-plus"></span></td>
-						</tr>
-						<tr class="info-row">
-							<td colspan="3">
-								<div class="info">
-								<ul class="col-sm-3">
-									<li class="head">Info</li>
-									<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-											consequat.
-									</li>
-								</ul>
-								<ul class="col-sm-3">
-									<li class="head">Credits</li>
-									<li><span>Client:</span> Google</li>
-									<li><span>Manufacturer:</span> Eliza Thornberry</li>
-									<li><span>Strategy:</span> John Doe</li>
-								</ul>
-								<ul class="col-sm-6">
-									<li><img src="<?php echo get_template_directory_uri(); ?>/images/table-img.jpg" alt=""/></li>
-								</ul>
 
-								
-								</div>
-							</td>
-						</tr>
-						<tr role="row">
-							<td class="">3Red Dot Design Award</td>
-							<td class="">Project 3</td>
-							<td class="">2015 <span class="expand-info ion-plus"></span></td>
-						</tr>
-						<tr class="info-row">
-							<td colspan="3">
-								<div class="info">
-								<ul class="col-sm-3">
-									<li class="head">Info</li>
-									<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-											consequat.
-									</li>
-								</ul>
-								<ul class="col-sm-3">
-									<li class="head">Credits</li>
-									<li><span>Client:</span> Google</li>
-									<li><span>Manufacturer:</span> Eliza Thornberry</li>
-									<li><span>Strategy:</span> John Doe</li>
-								</ul>
-								<ul class="col-sm-6">
-									<li><img src="<?php echo get_template_directory_uri(); ?>/images/table-img.jpg" alt=""/></li>
-								</ul>
-
-								
-								</div>
-							</td>
-						</tr>
-						<tr role="row">
-							<td class="">4Red Dot Design Award</td>
-							<td class="">Project 4</td>
-							<td class="">2014 <span class="expand-info ion-plus"></span></td>
-						</tr>
-						<tr class="info-row">
-							<td colspan="3">
-								<div class="info">
-								<ul class="col-sm-3">
-									<li class="head">Info</li>
-									<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-											consequat.
-									</li>
-								</ul>
-								<ul class="col-sm-3">
-									<li class="head">Credits</li>
-									<li><span>Client:</span> Google</li>
-									<li><span>Manufacturer:</span> Eliza Thornberry</li>
-									<li><span>Strategy:</span> John Doe</li>
-								</ul>
-								<ul class="col-sm-6">
-									<li><img src="<?php echo get_template_directory_uri(); ?>/images/table-img.jpg" alt=""/></li>
-								</ul>
-
-								
-								</div>
-							</td>
-						</tr>
-						<tr role="row">
-							<td class="">5Red Dot Design Award</td>
-							<td class="">Project 5</td>
-							<td class="">2013 <span class="expand-info ion-plus"></span></td>
-						</tr>
-						<tr class="info-row">
-							<td colspan="3">
-								<div class="info">
-								<ul class="col-sm-3">
-									<li class="head">Info</li>
-									<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-											consequat.
-									</li>
-								</ul>
-								<ul class="col-sm-3">
-									<li class="head">Credits</li>
-									<li><span>Client:</span> Google</li>
-									<li><span>Manufacturer:</span> Eliza Thornberry</li>
-									<li><span>Strategy:</span> John Doe</li>
-								</ul>
-								<ul class="col-sm-6">
-									<li><img src="<?php echo get_template_directory_uri(); ?>/images/table-img.jpg" alt=""/></li>
-								</ul>
-
-								
-								</div>
-							</td>
-						</tr>
+<?php 
+endwhile;
+endif;
+?>
+						
 					</tbody>
 				</table>
 		</div>

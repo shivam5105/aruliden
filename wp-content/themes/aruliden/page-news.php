@@ -60,8 +60,7 @@ Template Name: News
 	'posts_per_page' => $perPage,
 	'post_type' => 'aruliden_news',
 	'orderby' => 'date',
-	'order' => 'DESC',
-	'paged' => $paged
+	'order' => 'DESC'
 	);
 	$the_query = new WP_Query( $args );
 ?>

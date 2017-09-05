@@ -141,6 +141,8 @@ add_image_size( 'wpbs-featured-carousel', 970, 400, true);
 
 add_image_size( '1000x728', 1000, 728, true );
 add_image_size( '815x420', 815, 420, true );
+add_image_size( '840x495', 840, 495, true );
+add_image_size( '330x334', 330, 334, true );
 
 /* 
 to add more sizes, simply copy a line from above 
@@ -808,7 +810,7 @@ function aruliden_news() {
     'public'                => true,
     'show_ui'               => true,
     'show_in_menu'          => true,
-    'menu_position'         => 5,
+    'menu_position'         => 2,
     'show_in_admin_bar'     => true,
     'show_in_nav_menus'     => true,
     'can_export'            => true,
@@ -822,7 +824,312 @@ function aruliden_news() {
 add_action( 'init', 'aruliden_news', 0 );
 
 
-/** custom taxonomy for paul Recipes Recipe **/
+
+
+
+/** custom post for awards **/
+
+function aruliden_awards() {
+
+  $labels = array(
+    'name'                  => _x( 'Awards', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'Award', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'Awards', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent Awards:', 'aruliden' ),
+    'all_items'             => __( 'All Awards', 'aruliden' ),
+    'add_new_item'          => __( 'Add Awards', 'aruliden' ),
+    'add_new'               => __( 'Add Award', 'aruliden' ),
+    'new_item'              => __( 'New Award', 'aruliden' ),
+    'edit_item'             => __( 'Edit Awards', 'aruliden' ),
+    'update_item'           => __( 'Update Award', 'aruliden' ),
+    'view_item'             => __( 'View Awards', 'aruliden' ),
+    'view_items'            => __( 'View Awards', 'aruliden' ),
+    'search_items'          => __( 'Search Awards', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past Awards list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past Awards list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'Awards', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_awards'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 3,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_awards', $args );
+}
+add_action( 'init', 'aruliden_awards', 0 );
+
+
+
+
+/** custom post for works **/
+
+function aruliden_works() {
+
+  $labels = array(
+    'name'                  => _x( 'Works', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'Work', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'Works', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent Work:', 'aruliden' ),
+    'all_items'             => __( 'All Works', 'aruliden' ),
+    'add_new_item'          => __( 'Add Works', 'aruliden' ),
+    'add_new'               => __( 'Add Work', 'aruliden' ),
+    'new_item'              => __( 'New Work', 'aruliden' ),
+    'edit_item'             => __( 'Edit Works', 'aruliden' ),
+    'update_item'           => __( 'Update Work', 'aruliden' ),
+    'view_item'             => __( 'View Works', 'aruliden' ),
+    'view_items'            => __( 'View Works', 'aruliden' ),
+    'search_items'          => __( 'Search Works', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past Works list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past Works list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'Works', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_works'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 4,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_works', $args );
+}
+add_action( 'init', 'aruliden_works', 0 );
+
+
+/** custom post for services **/
+
+function aruliden_services() {
+
+  $labels = array(
+    'name'                  => _x( 'Services', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'Services', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'Services', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent Services:', 'aruliden' ),
+    'all_items'             => __( 'All Services', 'aruliden' ),
+    'add_new_item'          => __( 'Add Services', 'aruliden' ),
+    'add_new'               => __( 'Add Services', 'aruliden' ),
+    'new_item'              => __( 'New Services', 'aruliden' ),
+    'edit_item'             => __( 'Edit Services', 'aruliden' ),
+    'update_item'           => __( 'Update Services', 'aruliden' ),
+    'view_item'             => __( 'View Services', 'aruliden' ),
+    'view_items'            => __( 'View Services', 'aruliden' ),
+    'search_items'          => __( 'Search Services', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past Services list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past Services list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'Services', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_services'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 5,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_services', $args );
+}
+add_action( 'init', 'aruliden_services', 0 );
+
+
+
+/** custom post for select clients **/
+
+function aruliden_clients() {
+
+  $labels = array(
+    'name'                  => _x( 'Clients', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'Clients', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'Clients', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent Clients:', 'aruliden' ),
+    'all_items'             => __( 'All Clients', 'aruliden' ),
+    'add_new_item'          => __( 'Add Clients', 'aruliden' ),
+    'add_new'               => __( 'Add Clients', 'aruliden' ),
+    'new_item'              => __( 'New Clients', 'aruliden' ),
+    'edit_item'             => __( 'Edit Clients', 'aruliden' ),
+    'update_item'           => __( 'Update Clients', 'aruliden' ),
+    'view_item'             => __( 'View Clients', 'aruliden' ),
+    'view_items'            => __( 'View Clients', 'aruliden' ),
+    'search_items'          => __( 'Search Clients', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past Clients list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past Clients list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'Clients', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_clients'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 6,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_clients', $args );
+}
+add_action( 'init', 'aruliden_clients', 0 );
+
+
+
+
+/** custom post for select clients **/
+
+function aruliden_leadership() {
+
+  $labels = array(
+    'name'                  => _x( 'Leadership', 'Post Type General Name', 'aruliden' ),
+    'singular_name'         => _x( 'Leadership', 'Post Type Singular Name', 'aruliden' ),
+    'menu_name'             => __( 'Leadership', 'aruliden' ),
+    'name_admin_bar'        => __( 'Post Type', 'aruliden' ),
+    'archives'              => __( 'Item Archives', 'aruliden' ),
+    'attributes'            => __( 'Item Attributes', 'aruliden' ),
+    'parent_item_colon'     => __( 'Parent Leadership:', 'aruliden' ),
+    'all_items'             => __( 'All Leadership', 'aruliden' ),
+    'add_new_item'          => __( 'Add Leadership', 'aruliden' ),
+    'add_new'               => __( 'Add Leadership', 'aruliden' ),
+    'new_item'              => __( 'New Leadership', 'aruliden' ),
+    'edit_item'             => __( 'Edit Leadership', 'aruliden' ),
+    'update_item'           => __( 'Update Leadership', 'aruliden' ),
+    'view_item'             => __( 'View Leadership', 'aruliden' ),
+    'view_items'            => __( 'View Leadership', 'aruliden' ),
+    'search_items'          => __( 'Search Leadership', 'aruliden' ),
+    'not_found'             => __( 'Not found', 'aruliden' ),
+    'not_found_in_trash'    => __( 'Not found in Trash', 'aruliden' ),
+    'featured_image'        => __( 'Featured Image', 'aruliden' ),
+    'set_featured_image'    => __( 'Set featured image', 'aruliden' ),
+    'remove_featured_image' => __( 'Remove featured image', 'aruliden' ),
+    'use_featured_image'    => __( 'Use as featured image', 'aruliden' ),
+    'insert_into_item'      => __( 'Insert into item', 'aruliden' ),
+    'uploaded_to_this_item' => __( 'Uploaded to this item', 'aruliden' ),
+    'items_list'            => __( 'Past Leadership list', 'aruliden' ),
+    'items_list_navigation' => __( 'Past Leadership list navigation', 'aruliden' ),
+    'filter_items_list'     => __( 'Filter items list', 'aruliden' ),
+  );
+  $args = array(
+    'label'                 => __( 'Leadership', 'aruliden' ),
+    'description'           => __( 'Post Type Description', 'aruliden' ),
+    'labels'                => $labels,
+    'rewrite'              => array('slug'=>'aruliden_leadership'),
+    'supports'              => array('title', 'editor', 'thumbnail'),
+    'taxonomies'            => array('post_tag'),
+    'hierarchical'          => false,
+    'public'                => true,
+    'show_ui'               => true,
+    'show_in_menu'          => true,
+    'menu_position'         => 6,
+    'show_in_admin_bar'     => true,
+    'show_in_nav_menus'     => true,
+    'can_export'            => true,
+    'has_archive'           => true,    
+    'exclude_from_search'   => false,
+    'publicly_queryable'    => true,
+    'capability_type'       => 'page',
+  );
+  register_post_type( 'aruliden_leadership', $args );
+}
+add_action( 'init', 'aruliden_leadership', 0 );
+
+
+
+
+
+
+
+
+
+/** custom taxonomy for news **/
 function custom_taxonomy_news_cat()  {
 
 $labels = array(
@@ -853,9 +1160,204 @@ $args = array(
 register_taxonomy( 'news_cat', 'aruliden_news', $args );
 
 }
-
 add_action( 'init', 'custom_taxonomy_news_cat', 0 );
 
 
 
+
+
+/** custom taxonomy for Awards **/
+function custom_taxonomy_award_cat()  {
+
+$labels = array(
+    'name'                       => 'Award Categories',
+    'singular_name'              => 'Award',
+    'menu_name'                  => 'Award Categories',
+    'all_items'                  => 'All Awards',
+    'parent_item'                => 'Parent Award',
+    'parent_item_colon'          => 'Parent Award:',
+    'new_item_name'              => 'New Award',
+    'add_new_item'               => 'Add New Award',
+    'edit_item'                  => 'Edit Award',
+    'update_item'                => 'Update Award',
+    'separate_items_with_commas' => 'Separate Award with commas',
+    'search_items'               => 'Search Awards',
+    'add_or_remove_items'        => 'Add or remove Award',
+    'choose_from_most_used'      => 'Choose from the most used Award Categories',
+);
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+register_taxonomy( 'awards_cat', 'aruliden_awards', $args );
+
+}
+add_action( 'init', 'custom_taxonomy_award_cat', 0 );
+
+
+/** custom taxonomy for Awards **/
+function custom_taxonomy_works_cat()  {
+
+$labels = array(
+    'name'                       => 'Work Categories',
+    'singular_name'              => 'Work',
+    'menu_name'                  => 'Work Categories',
+    'all_items'                  => 'All Awards',
+    'parent_item'                => 'Parent Work',
+    'parent_item_colon'          => 'Parent Work:',
+    'new_item_name'              => 'New Work',
+    'add_new_item'               => 'Add New Work',
+    'edit_item'                  => 'Edit Work',
+    'update_item'                => 'Update Work',
+    'separate_items_with_commas' => 'Separate Work with commas',
+    'search_items'               => 'Search Awards',
+    'add_or_remove_items'        => 'Add or remove Work',
+    'choose_from_most_used'      => 'Choose from the most used Work Categories',
+);
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+);
+register_taxonomy( 'works_cat', 'aruliden_works', $args );
+
+}
+add_action( 'init', 'custom_taxonomy_works_cat', 0 );
+
+
+
+
+
+
+/** removing posts from dashboard menu **/
+function remove_menu () 
+{
+   remove_menu_page('edit.php');
+} 
+
+add_action('admin_menu', 'remove_menu');
+
+
+
+
+
+
+/*  Theme settings page
+  ------------------------------------------- */
+
+  function theme_settings_page()
+  {
+      ?>
+        <div class="wrap">
+        <h1>Social Media Links</h1>
+        <form method="post" action="options.php" enctype="multipart/form-data">
+            <?php
+                settings_fields("section");
+                do_settings_sections("theme-options");      
+                submit_button(); 
+            ?>          
+        </form>
+      </div>
+    <?php
+  }
+
+  function display_twitter_element()
+  {
+    ?>
+        <input type="text" name="twitter_url" id="twitter_url" value="<?php echo get_option('twitter_url'); ?>" placeholder="https://" />
+      <?php
+  }
+  
+  function display_facebook_element()
+  {
+    ?>
+        <input type="text" name="facebook_url" id="facebook_url" value="<?php echo get_option('facebook_url'); ?>" placeholder="https://" />
+      <?php
+  }
+  
+  function display_instagram_element()
+  {
+    ?>
+        <input type="text" name="instagram_url" id="instagram_url" value="<?php echo get_option('instagram_url'); ?>" placeholder="https://" />
+      <?php
+  }
+  function display_linkedin_element()
+  {
+    ?>
+        <input type="text" name="linkedin_url" id="linkedin_url" value="<?php echo get_option('linkedin_url'); ?>" placeholder="https://" />
+      <?php
+  }
+  function display_pinterest_element()
+  {
+    ?>
+        <input type="text" name="pinterest_url" id="pinterest_url" value="<?php echo get_option('pinterest_url'); ?>" placeholder="https://" />
+      <?php
+  }
+  function display_email_element()
+  {
+    ?>
+        <input type="text" name="email_url" id="email_url" value="<?php echo get_option('email_url'); ?>" placeholder="https://" />
+      <?php
+  }
+
+  function display_theme_panel_fields()
+  {
+    add_settings_section("section", "All Settings", null, "theme-options");
+    
+    add_settings_field("twitter_url", "Twitter Page", "display_twitter_element", "theme-options", "section");
+      add_settings_field("facebook_url", "Facebook Page", "display_facebook_element", "theme-options", "section");
+      add_settings_field("instagram_url", "Instagram Page", "display_instagram_element", "theme-options", "section");
+
+      add_settings_field("linkedin_url", "Linkedin Page", "display_linkedin_element", "theme-options", "section");
+      add_settings_field("pinterest_url", "Pinterest Page", "display_pinterest_element", "theme-options", "section");
+      add_settings_field("email_url", "Email", "display_email_element", "theme-options", "section");
+
+
+
+  
+      register_setting("section", "twitter_url");
+      register_setting("section", "facebook_url");
+      register_setting("section", "instagram_url");
+
+      register_setting("section", "linkedin_url");
+      register_setting("section", "pinterest_url");
+      register_setting("section", "email_url");
+
+
+      register_setting("section", "theme_layout");
+
+  }
+  
+  add_action("admin_init", "display_theme_panel_fields");
+
+
+
+  /*  add to WP menu
+  ------------------------------------------- */
+
+  function add_theme_menu_item()
+  {
+    add_theme_page("Social Media Links", "Social Media Links", "manage_options", "theme-options", "theme_settings_page", null, 99);
+  }
+  
+  add_action("admin_menu", "add_theme_menu_item");
+
+
+
+
+
+
+
+
 ?>
+
+

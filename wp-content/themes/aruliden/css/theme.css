@@ -20,6 +20,9 @@ li{
 	display: inline;
 	list-style-type: none;
 }
+.rel {
+	position: relative;
+}
 .no-pd {
 	padding: 0px;
 }
@@ -82,6 +85,20 @@ li{
 	font-size: 20px;
 }
 
+.navbar {
+			top: 0;
+			position: fixed;
+			transition:  top 1s cubic-bezier(.5,.08,0,.9);
+			height: 20px;
+			width: 100%;
+		}
+		.parallax-window {
+			transition:  all 1s ease-in-out;			
+		}
+		.navbar.expand {
+			top: -80px;
+		}
+
 .container-full {
 	width: 100%;
 	max-width: 1920px;
@@ -101,6 +118,9 @@ li{
 .home-work-listing .row {
 	position: relative;
 }
+.home-work-listing .row.last-row {
+	margin-top: 500px;
+}
 .home-work-listing .row:first-child{
 	margin-bottom: 280px;
 }
@@ -119,7 +139,7 @@ li{
 	right: 0px;
 	text-align: right;
 }
-.home-work-listing .abs.down {
+.home-work-listing .abs.down, .home-work-listing .rel.down {
 	bottom: -177px;
 	max-width: 482px;
 }
@@ -647,3 +667,8 @@ table.dataTable tr.active td {
 	border: none;
 	box-shadow: none;
 }
+
+.page-template-page-work .home-work-listing .row:first-child {
+	margin-bottom: -50px;
+}
+

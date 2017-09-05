@@ -1,10 +1,11 @@
 $ = jQuery.noConflict();
 $(document).ready(function(){
 	$(".page-banner").css({"height":$(window).height()+"px"});
-
+	if($('.post-slider').length > 0)
+	{
 	slider = $('.post-slider').bxSlider({ 
     nextSelector: '#slider-next',
-    nextText: '&rarr;',  
+    nextText: '&rarr;',
     prevSelector: '#slider-prev',
     prevText: '&larr;',
     touchEnabled: true,
@@ -18,6 +19,7 @@ $(document).ready(function(){
         $('.slide-number').text((slider.getCurrentSlide()+1)+'/'+slider.getSlideCount());   
     }
 });
+}
 
 $(".info-accordion .info").hide();
 $(".info-accordion .acc:eq(0) .info").slideDown();
@@ -76,7 +78,25 @@ $("table.dataTable .expand-info").click(function(){
     	});
     }
 
-});
+
+    $(".work-container .row").each(function(){
+    	//alert($(this).children(".ms-grid").length);
+    	if($(this).children(".ms-grid").length == 1)
+    	{
+    		//$(this).css({"margin-top":"500px;"});
+    		$(this).addClass("last-row");
+    		//alert($(this).attr("class"));
+
+    	}
+    });
+
+
+   /* $('.masonry-cnt').isotope({
+			itemSelector: '.ms-grid',
+			layoutMode:'fitRows'
+		});*/
+
+	});
 
 
 $(window).resize(function(){

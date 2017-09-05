@@ -52,8 +52,6 @@ Template Name: Work
 
 		</div>
 
-<div class="work-container">		
-
 <?php 
 	$args = array( 
 	'post_type' => 'aruliden_works',
@@ -77,7 +75,7 @@ $count = $count + 1;
 ?>	
 
 
-			<div class="<?php if($counter % 2 == 0){echo "col-sm-5 abs left down";} else{echo "col-sm-7 pull-right";} ?> ms-grid img-animate">
+			<div class="<?php if($counter % 2 == 0){echo "col-sm-5 abs left down";} else{echo "col-sm-7 pull-right";} ?>">
 				<img src="<?php echo the_post_thumbnail_url("full"); ?>" alt="#" />
 				<div class="tag"><?php echo get_the_title(); ?></div>
 			</div>
@@ -93,13 +91,12 @@ $count = $count + 1;
 	$counter++;
 
 	//echo $counter;
-	//echo $count;
+	echo $count;
 
 	?>		
 
 <?php endwhile; endif; ?>	
 
-</div>
 		<!--div class="row">
 			<div class="col-sm-5 abs left down">
 				<img src="<?php echo the_post_thumbnail_url("full"); ?>" alt="#" />
